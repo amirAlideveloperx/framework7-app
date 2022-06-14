@@ -152,8 +152,6 @@ Or launch UI where you will be able to change icons and splash screens:
 framework7 assets --ui
 ```
 
-
-
 ## Documentation & Resources
 
 * [Framework7 Core Documentation](https://framework7.io/docs/)
