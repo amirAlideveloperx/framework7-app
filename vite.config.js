@@ -4,6 +4,7 @@ import framework7 from 'rollup-plugin-framework7';
 
 import { createHtmlPlugin } from 'vite-plugin-html';
 
+// env variables
 process.env.TARGET = process.env.TARGET || 'web';
 const isCordova = process.env.TARGET === 'cordova';
 
