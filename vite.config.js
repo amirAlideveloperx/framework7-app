@@ -1,4 +1,4 @@
-
+// Vite config 
 import path from 'path';
 import framework7 from 'rollup-plugin-framework7';
 
