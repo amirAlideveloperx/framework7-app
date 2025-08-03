@@ -1,4 +1,4 @@
-# testApp
+# Framework7  
 
 
 ## Framework7 CLI Options
