@@ -7,50 +7,45 @@ import '../css/framework7-custom.less';
 // Import Icons and App Custom Styles
 import '../css/icons.css';
 import '../css/app.less';
+
 // Import Cordova APIs
 import cordovaApp from './cordova-app.js';
 
-// Import Routes
+// Import Routes and Store
 import routes from './routes.js';
-// Import Store
 import store from './store.js';
 
 // Import main app component
 import App from '../app.f7';
 
-var device = getDevice();
-var app = new Framework7({
-  name: 'testApp', // App name
-  theme: 'auto', // Automatic theme detection
-  el: '#app', // App root element
-  component: App, // App main component
-  id: 'io.framework7.myapp', // App bundle ID
-  // App store
-  store: store,
-  // App routes
-  routes: routes,
-  // Register service worker (only on production build)
-  serviceWorker: process.env.NODE_ENV ==='production' ? {
-    path: '/service-worker.js',
-  } : {},
+const device = getDevice();
 
-  // Input settings
+const appConfig = {
+  name: 'testApp',
+  theme: 'auto',
+  el: '#app',
+  component: App,
+  id: 'io.framework7.myapp',
+  store,
+  routes,
+  serviceWorker: process.env.NODE_ENV === 'production'
+    ? { path: '/service-worker.js' }
+    : {},
   input: {
     scrollIntoViewOnFocus: device.cordova && !device.electron,
     scrollIntoViewCentered: device.cordova && !device.electron,
   },
-  // Cordova Statusbar settings
   statusbar: {
     iosOverlaysWebView: true,
     androidOverlaysWebView: false,
   },
   on: {
-    init: function () {
-      var f7 = this;
-      if (f7.device.cordova) {
-        // Init cordova APIs (see cordova-app.js)
-        cordovaApp.init(f7);
+    init() {
+      if (this.device.cordova) {
+        cordovaApp.init(this);
       }
     },
   },
-});
+};
+
+const app = new Framework7(appConfig);
